@@ -1,9 +1,11 @@
 package scripts.features;
 
+import core.configurations.models.WebBrowser;
 import core.testng.annotations.Description;
 import core.testng.annotations.Id;
 import core.testng.annotations.Name;
 import core.testng.annotations.Precondition;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Factory;
 import scripts.base.TestScriptBase;
 
@@ -18,7 +20,7 @@ public class TemplateScript extends TestScriptBase {
     }
 
     @Override
-    protected void setup() {
+    protected void setup(WebDriver webDriver, WebBrowser currentBrowser) {
         // TODO: Precondition of test script
     }
 

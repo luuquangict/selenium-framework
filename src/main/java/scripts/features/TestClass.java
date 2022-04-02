@@ -1,9 +1,12 @@
 package scripts.features;
 
+import core.configurations.models.WebBrowser;
 import core.testng.annotations.Description;
 import core.testng.annotations.Id;
 import core.testng.annotations.Name;
 import core.testng.annotations.Precondition;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Factory;
 import pageObjects.pages.PageTestLession7;
 import scripts.base.TestScriptBase;
@@ -19,8 +22,8 @@ public class TestClass extends TestScriptBase {
     }
 
     @Override
-    protected void setup() {
-        pageTestLession7 = new PageTestLession7(this.webDriver, this.currentBrowser, this.pageCommon);
+    protected void setup(WebDriver webDriver, WebBrowser currentBrowser) {
+        pageTestLession7 = new PageTestLession7(webDriver, currentBrowser, this.pageCommon);
     }
 
     @Override

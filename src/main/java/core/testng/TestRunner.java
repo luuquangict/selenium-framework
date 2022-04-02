@@ -11,16 +11,15 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pageObjects.pages.PageCommon;
 
+import java.time.Duration;
 import java.util.Iterator;
 
 public abstract class TestRunner {
 
-    protected final WebBrowser currentBrowser;
-    protected WebDriver webDriver;
-    protected PageCommon pageCommon;
     protected AccountSettings accounts;
+    private final WebBrowser currentBrowser;
+    private WebDriver webDriver;
 
     public TestRunner(String name, String version, String osPlatform) {
         System.out.println(String.format("Browser = {name=%s, version=%s, osPlatform=%s}", name, version, osPlatform));
@@ -35,17 +34,25 @@ public abstract class TestRunner {
 
         // TODO: Get testcase information here
 
+        // Goto home page URL
         if (AppSettings.getInstance().getWebUrl() == null) {
             Assert.fail("Home page url is invalid");
         }
-
         System.out.println("Goto URL: " + AppSettings.getInstance().getWebUrl());
+        this.webDriver
+                .manage()
+                .timeouts()
+                .implicitlyWait(Duration.ofSeconds(AppSettings.getInstance().getTimeOut().pageLoaded));
         this.webDriver.get(AppSettings.getInstance().getWebUrl());
+        this.webDriver
+                .manage()
+                .timeouts()
+                .implicitlyWait(Duration.ofSeconds(AppSettings.getInstance().getTimeOut().findElement));
 
         // Initialize page
         this.accounts = AccountSettings.getInstance();
-        this.pageCommon = new PageCommon(this.webDriver, this.currentBrowser);
-        setup();
+        beforeSetup(this.webDriver, this.currentBrowser);
+        setup(this.webDriver, this.currentBrowser);
     }
 
     @AfterMethod
@@ -60,7 +67,10 @@ public abstract class TestRunner {
         }
     }
 
-    protected abstract void setup();
+    protected void beforeSetup(WebDriver webDriver, WebBrowser currentBrowser) {
+    }
+
+    protected abstract void setup(WebDriver webDriver, WebBrowser currentBrowser);
 
     @Test
     protected abstract void run();
