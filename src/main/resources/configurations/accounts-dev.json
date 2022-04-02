@@ -1,0 +1,18 @@
+{
+  "default": {
+    "username": "default",
+    "password": "123456"
+  },
+  "admin": {
+    "username": "admin",
+    "password": "123456"
+  },
+  "user": {
+    "username": "user",
+    "password": "123456"
+  },
+  "invalid": {
+    "username": "invalidusername",
+    "password": "xxxxxxxx"
+  }
+}

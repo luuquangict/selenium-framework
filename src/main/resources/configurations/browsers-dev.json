@@ -1,0 +1,44 @@
+{
+  "windows": [
+    {
+      "enable": true,
+      "name": "Chrome"
+    },
+    {
+      "enable": false,
+      "name": "Firefox"
+    },
+    {
+      "enable": false,
+      "name": "Edge"
+    },
+    {
+      "enable": false,
+      "name": "IE"
+    }
+  ],
+  "mac": [
+    {
+      "enable": false,
+      "name": "Chrome"
+    },
+    {
+      "enable": false,
+      "name": "Firefox"
+    },
+    {
+      "enable": false,
+      "name": "Safari"
+    }
+  ],
+  "linux": [
+    {
+      "enable": false,
+      "name": "Chrome"
+    },
+    {
+      "enable": false,
+      "name": "Firefox"
+    }
+  ]
+}
