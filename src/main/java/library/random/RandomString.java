@@ -1,29 +1,22 @@
 package library.random;
 
-import org.apache.commons.lang3.NotImplementedException;
+import org.apache.commons.lang3.RandomStringUtils;
 
 public class RandomString {
-    private static String numbers = "1234567890";
-    private static String characters = "zxcvbnmasdfghjklqwertyuiop";
-    private static String specials = "!@#$%^&*();'<>.,/\\{}[]";
-
-    private static String get(String source, int length) {
-        throw new NotImplementedException("Not implement this method");
+    public static String randomAlphabetic(int length) {
+        return RandomStringUtils.randomAlphabetic(length);
     }
 
-    public static String getString(int length) {
-        throw new NotImplementedException("Not implement this method");
+    public static String randomNumeric(int length) {
+        return RandomStringUtils.randomNumeric(length);
     }
 
-    public static String getNumber(int length) {
-        throw new NotImplementedException("Not implement this method");
-    }
-
-    public static String getStringAndNumber(int length) {
-        throw new NotImplementedException("Not implement this method");
+    public static String randomAlphanumeric(int length) {
+        return RandomStringUtils.randomAlphanumeric(length / 2)
+                + RandomStringUtils.randomNumeric(length - length / 2);
     }
 
     public static String getSpecialString(int length) {
-        throw new NotImplementedException("Not implement this method");
+        return RandomStringUtils.randomGraph(length);
     }
 }
