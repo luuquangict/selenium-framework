@@ -1,9 +1,9 @@
 package testng;
 
-import configuration.models.AccountSetting;
-import configuration.models.AppSetting;
+import configuration.managers.AccountManager;
+import configuration.managers.AppSettingManager;
+import configuration.managers.WebBrowserManager;
 import configuration.models.WebBrowser;
-import configuration.models.WebBrowserSetting;
 import selenium.drivers.WebDriverFactory;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -17,7 +17,7 @@ import java.util.Iterator;
 
 public abstract class TestRunner {
 
-    protected AccountSetting accounts;
+    protected AccountManager accountManager;
     private final WebBrowser currentBrowser;
     private WebDriver webDriver;
 
@@ -35,22 +35,22 @@ public abstract class TestRunner {
         // TODO: Get testcase information here
 
         // Goto home page URL
-        if (AppSetting.getInstance().getWebUrl() == null) {
+        if (AppSettingManager.getInstance().getWebUrl() == null) {
             Assert.fail("Home page url is invalid");
         }
-        System.out.println("Goto URL: " + AppSetting.getInstance().getWebUrl());
+        System.out.println("Goto URL: " + AppSettingManager.getInstance().getWebUrl());
         this.webDriver
                 .manage()
                 .timeouts()
-                .implicitlyWait(Duration.ofSeconds(AppSetting.getInstance().getTimeOut().pageLoaded));
-        this.webDriver.get(AppSetting.getInstance().getWebUrl());
+                .implicitlyWait(Duration.ofSeconds(AppSettingManager.getInstance().getTimeOut().pageLoaded));
+        this.webDriver.get(AppSettingManager.getInstance().getWebUrl());
         this.webDriver
                 .manage()
                 .timeouts()
-                .implicitlyWait(Duration.ofSeconds(AppSetting.getInstance().getTimeOut().findElement));
+                .implicitlyWait(Duration.ofSeconds(AppSettingManager.getInstance().getTimeOut().findElement));
 
         // Initialize page
-        this.accounts = AccountSetting.getInstance();
+        this.accountManager = AccountManager.getInstance();
         beforeSetup(this.webDriver, this.currentBrowser);
         setup(this.webDriver, this.currentBrowser);
     }
@@ -59,7 +59,7 @@ public abstract class TestRunner {
     public void afterRun() {
         try {
             cleanUp();
-            if (AppSetting.getInstance().getOptions().quitDriver) {
+            if (AppSettingManager.getInstance().getOptions().quitDriver) {
                 webDriver.quit();
             }
         } catch (Exception e) {
@@ -80,10 +80,10 @@ public abstract class TestRunner {
     @DataProvider
     protected static Iterator<Object[]> dataProvider() {
         // Load app settings
-        AppSetting.getInstance();
+        AppSettingManager.getInstance();
 
         // Load browser settings
-        return WebBrowserSetting
+        return WebBrowserManager
                 .getInstance()
                 .getEnableWebBrowsers()
                 .iterator();

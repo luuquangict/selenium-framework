@@ -1,24 +1,12 @@
 package configuration.models;
 
 import com.google.gson.annotations.SerializedName;
-import configuration.WebBrowserLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class WebBrowserSetting {
-
-    private static WebBrowserSetting instance;
-
-    public static WebBrowserSetting getInstance() {
-        if (instance == null) {
-            WebBrowserLoader loader = new WebBrowserLoader();
-            instance = loader.load();
-        }
-
-        return instance;
-    }
 
     @SerializedName("windows")
     private List<WebBrowser> windows;

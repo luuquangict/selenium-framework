@@ -1,5 +1,6 @@
 package scripts.features;
 
+import configuration.models.Account;
 import configuration.models.WebBrowser;
 import testng.annotations.Description;
 import testng.annotations.Id;
@@ -27,6 +28,9 @@ public class TestClass extends TestScriptBase {
 
     @Override
     protected void run() {
+        Account account = accountManager.getAccount("quang");
+        System.out.println(account.getUsername());
+
         pageTestLesson7.clickOnButton1();
         pageTestLesson7.verifyTextAfterClickButton1();
     }

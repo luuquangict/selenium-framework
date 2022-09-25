@@ -1,21 +1,10 @@
 package configuration.models;
 
 import com.google.gson.annotations.SerializedName;
-import configuration.AppSettingLoader;
 
 import java.util.Arrays;
 
 public class AppSetting {
-
-    private static AppSetting instance;
-
-    public static AppSetting getInstance() {
-        if (instance == null) {
-            AppSettingLoader loader = new AppSettingLoader();
-            instance = loader.load();
-        }
-        return instance;
-    }
 
     @SerializedName("webUrl")
     private WebUrl[] webUrls;

@@ -1,19 +1,19 @@
 package library.system;
 
-import configuration.models.AppSetting;
+import configuration.managers.AppSettingManager;
 
 public class Sleep {
 
     public static void defaultTime() {
-        sleep(AppSetting.getInstance().getTimeSleep().defaultTime);
+        sleep(AppSettingManager.getInstance().getTimeSleep().defaultTime);
     }
 
     public static void refreshTime() {
-        sleep(AppSetting.getInstance().getTimeSleep().refreshTime);
+        sleep(AppSettingManager.getInstance().getTimeSleep().refreshTime);
     }
 
     public static void longTime() {
-        sleep(AppSetting.getInstance().getTimeSleep().longTime);
+        sleep(AppSettingManager.getInstance().getTimeSleep().longTime);
     }
 
     private static void sleep(int time) {
