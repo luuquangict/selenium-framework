@@ -46,7 +46,8 @@ public class AccountManager {
                 .collect(Collectors.toList());
 
         if (accounts.size() == 0) {
-            throw new NotFoundException("Not found account with name: " + name);
+            System.out.println("Could not found account with name: " + name);
+            return null;
         }
 
         return accounts.get(0);
