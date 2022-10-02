@@ -182,7 +182,7 @@ public class PageObjectBase {
         element.sendKeys(value);
     }
 
-    public void enterTextJs(ILocator locator, String text) {
+    protected void enterTextJs(ILocator locator, String text) {
         WebElement element = this.getWebElement(locator);
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].value=arguments[1]", element, text);
     }
