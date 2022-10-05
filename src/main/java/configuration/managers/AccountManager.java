@@ -22,6 +22,12 @@ public class AccountManager {
         return instance;
     }
 
+    /**
+     * Prevent user create new instance
+     */
+    private AccountManager() {
+    }
+
     private Account[] accounts;
 
     public Account getDefaultAccount() {

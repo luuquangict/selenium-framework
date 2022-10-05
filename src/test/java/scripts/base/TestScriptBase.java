@@ -1,6 +1,7 @@
 package scripts.base;
 
 import configuration.models.WebBrowser;
+import pageObjects.pages.PageLogin;
 import testng.TestRunner;
 import org.openqa.selenium.WebDriver;
 import pageObjects.pages.PageCommon;
@@ -13,6 +14,7 @@ public abstract class TestScriptBase extends TestRunner {
 
     protected PageCommon pageCommon;
     protected PageTestLesson7 pageTestLesson7;
+    protected PageLogin pageLogin;
 
     @Override
     protected final void beforeSetup(WebDriver webDriver, WebBrowser currentBrowser) {
