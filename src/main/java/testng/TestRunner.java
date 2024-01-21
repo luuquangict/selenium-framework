@@ -47,7 +47,7 @@ public abstract class TestRunner {
         this.webDriver
                 .manage()
                 .timeouts()
-                .implicitlyWait(Duration.ofSeconds(AppSettingManager.getInstance().getTimeOut().findElement));
+                .implicitlyWait(Duration.ofMillis(AppSettingManager.getInstance().getTimeOut().findElement));
 
         // Initialize page
         this.accountManager = AccountManager.getInstance();
