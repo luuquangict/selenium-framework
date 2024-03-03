@@ -13,6 +13,7 @@ import org.testng.Assert;
 import pageObjects.pages.PageCommon;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -305,5 +306,23 @@ public class PageObjectBase {
     protected void scrollToCenterElement(ILocator locator) {
         ((JavascriptExecutor) webDriver)
                 .executeScript("arguments[0].scrollIntoView({block: 'center'});", getWebElement(locator));
+    }
+
+    protected void switchToWindows(int index) {
+        List<String> arrWindows = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(arrWindows.get(index));
+    }
+
+    protected void switchToFirstWindows() {
+        List<String> arrWindows = new ArrayList<>(webDriver.getWindowHandles());
+        webDriver.switchTo().window(arrWindows.get(0));
+    }
+
+    protected void switchToFrame(ILocator locator) {
+        webDriver.switchTo().frame(getWebElement(locator));
+    }
+
+    protected void switchToParentFrame(ILocator locator){
+        webDriver.switchTo().parentFrame();
     }
 }
